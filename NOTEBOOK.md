@@ -217,3 +217,10 @@ URL, so it is named, not linked); licence. Claims checked against data while
 writing: "fails on many" (example 00 length check) and "45 of 49 towns" (needed "of 49
 towns an earlier grade had refused") were corrected; "`--limit` on every verb" was
 false (`check` has none) and was removed.
+
+**13:40 · Section 6 prep: release workflow committed** (`.github/workflows/publish.yml`,
+see 12:36). Check plan: `src/` is byte-identical from `fe5ce77` (section 2) to this
+commit (`git diff fe5ce77 HEAD -- src` empty), so one behaviour check on this commit
+covers sections 2–6; the separately queued section-2 run was cancelled before it
+started, and the run goes to a worktree at this commit instead. Then the final smoke,
+also in a worktree at this commit.
