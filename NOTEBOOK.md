@@ -55,7 +55,7 @@ no commits, so there was no history to audit for blobs committed and later ignor
 
 **12:25 · Hygiene scan (read-only, during the baseline).** No absolute paths, home
 dirs, machine names, tokens or keys in tracked files. The only absolute paths are in
-`runs/*.sh` (`cd /Users/tom/dev/contrastset`), and `runs/` is ignored as a whole.
+`runs/*.sh` (a `cd` into the author's checkout), and `runs/` is ignored as a whole.
 API keys are only ever read from the environment (`OPENAI_API_KEY`, the Anthropic SDK's
 own lookup).
 
@@ -224,3 +224,62 @@ commit (`git diff fe5ce77 HEAD -- src` empty), so one behaviour check on this co
 covers sections 2–6; the separately queued section-2 run was cancelled before it
 started, and the run goes to a worktree at this commit instead. Then the final smoke,
 also in a worktree at this commit.
+
+**13:45 · Regrade comparator exercised offline** (no model): the frozen file against
+itself passes; one p_correct shifted by 0.5× its question's pruned-mass bound passes,
+by 2× fails (Kraków/region, bound 4.48e-05); a changed modal answer fails. The tier
+itself (27 min of HF grading) was not run end to end in this pass: the behaviour
+checks run the identical grade command and compare hashes, which is stricter.
+
+**13:50 · STOP: section 1 grade hash differs from the baseline.** s1 (worktree at
+`9fe330e`): graded-29-B normalised `91535894…` vs baseline `f0da59f8…`; check-behaviour
+`7fe53294…` identical. What changed: 78 values, all `questions[].logprob.p_refusal` and
+`questions[].refusal_rate` (which is set to it): last-digit differences (e.g.
+4.917343709552636e-10 vs 4.917343709552635e-10). Every bin, modal answer, p_correct,
+p_modal (raw and sampler) and every pruned-mass bound is bit-identical. Section 1's only
+`src/` change is the `__version__` line. p_refusal is the one mass scored as a padded
+batch (`HFAdapter.score_many`, refusal phrases); p_correct/p_modal go through
+`prefix_mass`. Working hypothesis: run-to-run float nondeterminism of the batched MPS
+forward pass, not a behaviour change. Not fixed forward; release halted. To test it:
+the unchanged pre-release code (`e30724a`, worktree) regrades the first 5 towns
+(4 of which differ) after the queued release-commit check and smoke.
+
+**14:20 · Cause of the mismatch: my check environment, not the code.** The release-commit
+run (`final`, worktree at `d0a3562`) is identical to s1 (0 differences) and differs from
+the baseline at the same 39 p_refusal positions: systematic, so not run-to-run noise
+(hypothesis of 13:50 dropped). Both worktree venvs came up on **Python 3.11.16 with
+numpy 2.4.6**; the baseline ran in the main `.venv`, **Python 3.14.7, numpy 2.5.4**.
+`uv.lock` pins numpy by interpreter (2.4.6 for < 3.12, 2.5.4 for ≥ 3.12), so `uv sync`
+in a fresh worktree, which picked 3.11, got a different numpy. My mistake: I checked
+torch/transformers versions when creating the worktrees, not the interpreter.
+Matched check: worktree `wt-final314` at `d0a3562` with `uv sync --locked --all-extras
+--python 3.14.7`; its package list equals the baseline venv's (apart from contrastset's
+path and ruff). Queued: (1) `e30724a` (pre-release code) on 3.11, first 5 towns: should
+reproduce s1's values, not the baseline's; (2) the full baseline script on
+`wt-final314`: should match the baseline hashes exactly.
+
+**14:31 · Final smoke on the release commit: PASS** (`pytest -m smoke` in the `d0a3562`
+worktree, Python 3.11 env, 8 min 33 s): 748/748 cities pairs ok on slot_diff and
+duplicates; min held-out AUC layers 20–36 = 0.9854 (cities), 1.0000 (sp_en_trans);
+max |AUC − expected-auc.jsonl| = 0.0 for both.
+
+**14:37 · Drift confirmed with identical code.** `e30724a` (pre-release, unchanged) on
+the Python 3.11 / numpy 2.4.6 env, first 5 towns: identical to s1 (0 differences), and
+14 last-digit p_refusal/refusal_rate differences (max relative 4.3e-16) from the
+baseline, which is the same code on Python 3.14.7 / numpy 2.5.4. So the interpreter and
+numpy build move the last digit of the batched refusal mass; the code changes do not.
+
+**14:38 · Comparison rule changed (Thomas's decision, conditional on the confirmation
+above):** graded files are compared with floats within a relative tolerance of 1e-12,
+everything else exact (provenance.created and tool_version ignored as before)
+(`compare_tol.py`, scratch). Results against the baseline: s1 and the release commit
+(`final`): 78 float fields differ, max relative 6.3e-16, 0 beyond tolerance, 0 non-float
+differences: **pass**. Behaviour-check hashes: exact match at every step
+(`7fe53294…`). With tolerance 0 the same script flags exactly those 78 fields.
+Still running for the record: the full baseline on the release commit in a Python
+3.14.7 env with the baseline's package list (expected to match exactly).
+
+**14:39 · Release.** Tag `v0.1.0` on the commit that adds this entry (it differs from
+the checked `d0a3562` by NOTEBOOK.md only); create github.com/modemuser/contrastset
+(public), push main and the tag; the tag runs the publish workflow (PyPI, trusted
+publishing).
