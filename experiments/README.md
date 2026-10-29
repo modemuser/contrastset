@@ -14,4 +14,6 @@ B asks for the name only. See FINDINGS, "The refusal invitation creates the refu
 
 ## Files
 - `wikidata-towns.jsonl`: 294 towns from `scripts/wikidata_seed.py`.
+- `wikidata-towns-pass2.jsonl`: 168 more towns from the same script, the candidate list for a
+  second grading pass that has not been run; nothing in FINDINGS rests on it.
 - `position-*.yaml`, `three-clause-position.yaml`: Experiment 1 (position effect).

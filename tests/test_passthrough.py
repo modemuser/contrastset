@@ -37,7 +37,7 @@ def test_grade_passes_unknown_entity_fields_through(monkeypatch, capsys) -> None
 
 
 @pytest.mark.xfail(strict=True, reason="grade builds each QuestionGrade afresh and drops unknown question "
-                                       "fields; left as is in the v0.1.0 pass (no behaviour change)")
+                                       "fields: github.com/modemuser/contrastset/issues/1")
 def test_grade_passes_unknown_question_fields_through(monkeypatch, capsys) -> None:  # type: ignore[no-untyped-def]
     [out] = grade_stdin(monkeypatch, capsys, town("Düren", my_q_label="x"))
     assert out["questions"][0]["my_q_label"] == "x"

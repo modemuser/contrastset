@@ -1,7 +1,16 @@
 # contrastset
 
+[![ci](https://github.com/modemuser/contrastset/actions/workflows/ci.yml/badge.svg)](https://github.com/modemuser/contrastset/actions/workflows/ci.yml)
+
 > **Status: v0.1.0.** Used for one experiment so far (an "I don't know" readout in
-> Qwen3-8B). The file formats and the CLI may still change.
+> Qwen3-8B), including a reproduction of Marks & Tegmark on Qwen3-8B as a built-in
+> probe-stage check. The file formats and the CLI may still change.
+
+Two files to read alongside the code: [FINDINGS.md](FINDINGS.md), what building the
+tool measured, each result with its data in `runs/` and how far it can be trusted,
+including claims that turned out wrong and were corrected; and
+[NOTEBOOK.md](NOTEBOOK.md), the chronological log of the release pass: every run,
+check and decision, mistakes included.
 
 Build and check **contrast sets**, matched pairs of texts that differ in exactly one
 controlled variable, for interpretability experiments on local LLMs (large language
@@ -215,7 +224,9 @@ breaking files written by other tools:
 | pair (`check`) | `a`, `b` | `pair_id` (else sha256 of a and b), `frame`, `fills`, `factors` |
 
 One known gap in v0.1.0: `grade` keeps unknown fields on an entity line but not
-inside its `questions[]` entries (the test for it is marked as an expected failure).
+inside its `questions[]` entries
+([modemuser/contrastset#1](https://github.com/modemuser/contrastset/issues/1); the test
+for it is marked as an expected failure).
 
 Specs are hand-written configuration and stay strict: an unknown key is an error.
 The schemas are in `src/contrastset/records.py` (`GradedView`, `PairView` are the
@@ -303,6 +314,10 @@ set them explicitly.
   (`experiments/templates/qwen3-name-only.txt`), `-n 0 --logprob`, and compares
   with the frozen `tests/regrade/graded-29-B.jsonl`: bins and modal answers must
   match exactly, masses within the pruned-mass bound.
+
+Graded files are compared within a tolerance, not bit for bit: the refusal mass
+(`p_refusal`) differs in the last digit across numpy builds (Python 3.11 with numpy
+2.4.6 vs 3.14 with 2.5.4, same code; NOTEBOOK.md, 2026-10-29).
 
 ## Lessons
 
