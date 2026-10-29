@@ -204,3 +204,16 @@ Not moved because it does not exist: a graded file for these statements (see 12:
   3.14, `uv sync --locked` without extras. mypy marks the optional extras' modules
   (torch, transformers, numpy, huggingface_hub, anthropic) `ignore_missing_imports`,
   so it passes without them and still checks against them where installed.
+
+**13:36 · Section 5, README.** Status line (v0.1.0, one experiment, API may change);
+what a contrast set is and why matched pairs; install (git tag URL; PyPI once the tag
+workflow has run); the ladder 00–04 (each verb with an example); the JSONL contract
+incl. the question-level pass-through gap; log-prob grading (tokenization sum,
+pruned-mass bound); the template-hash guard; backends and the rule (Ollama when samples
+suffice, HF log-prob for anything feeding a probe); Testing (three tiers, measured
+times: fast ~9 s, smoke ~10 min, regrade ~27 min); Lessons (tokenization undercount,
+refusal-instruction effect) linking to FINDINGS.md here (knowing-probe has no public
+URL, so it is named, not linked); licence. Claims checked against data while
+writing: "fails on many" (example 00 length check) and "45 of 49 towns" (needed "of 49
+towns an earlier grade had refused") were corrected; "`--limit` on every verb" was
+false (`check` has none) and was removed.

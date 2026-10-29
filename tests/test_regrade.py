@@ -5,7 +5,7 @@ Regrades the 29 towns of examples/03-two-clause-rivers with HF Qwen3-8B, templat
 tests/regrade/graded-29-B.jsonl. A log-prob mass is a lower bound: the true value is
 in [p, p + pruned_max] (HFAdapter.prefix_mass drops paths below 1e-5), so two grades
 may differ by at most the larger of their pruned masses. Bins and modal answers must
-match exactly. About 25 minutes on an M-series Mac.
+match exactly. About 27 minutes on an M-series Mac.
 """
 
 from __future__ import annotations

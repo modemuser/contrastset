@@ -56,7 +56,7 @@ addopts = "-m 'not smoke and not regrade'"
 markers = [
     "live: talks to a real model server; skipped unless CONTRASTSET_LIVE_* env vars are set",
     "smoke: opt-in, loads Qwen3-8B on HF and runs example 00 end to end (~10 min)",
-    "regrade: opt-in, slow, regrades the 29 towns with --logprob against the frozen file (~25 min)",
+    "regrade: opt-in, slow, regrades the 29 towns with --logprob against the frozen file (~27 min)",
 ]
 
 [tool.mypy]
