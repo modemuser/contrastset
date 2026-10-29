@@ -1,7 +1,26 @@
+# Python and tooling
 __pycache__/
 *.pyc
 .venv/
-dist/
-dist-placeholder/
 .pytest_cache/
 .mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+dist-placeholder/
+.ipynb_checkpoints/
+.DS_Store
+
+# Activations and model caches: large, reproducible from the scripts
+*.npy
+*.npz
+.cache/
+hf-cache/
+
+# Run outputs (graded and generated files, logs, chain scripts): large and machine-specific.
+# The small files the examples and tests need live in examples/ and tests/regrade/.
+runs/
+
+# Statement sets fetched by examples/00-marks-tegmark/fetch_data.py (upstream has no licence file)
+examples/00-marks-tegmark/data/
