@@ -2,14 +2,14 @@
 
 [![ci](https://github.com/modemuser/contrastset/actions/workflows/ci.yml/badge.svg)](https://github.com/modemuser/contrastset/actions/workflows/ci.yml)
 
-> **Status: v0.1.0.** Used for one experiment so far (an "I don't know" readout in
+> **Status: v0.1.** Used for one experiment so far (an "I don't know" readout in
 > Qwen3-8B), including a reproduction of Marks & Tegmark on Qwen3-8B as a built-in
 > probe-stage check. The file formats and the CLI may still change.
 
-Two files to read alongside the code: [FINDINGS.md](FINDINGS.md), what building the
+Two files to read alongside the code: [FINDINGS.md](https://github.com/modemuser/contrastset/blob/main/FINDINGS.md), what building the
 tool measured, each result with its data in `runs/` and how far it can be trusted,
 including claims that turned out wrong and were corrected; and
-[NOTEBOOK.md](NOTEBOOK.md), the chronological log of the release pass: every run,
+[NOTEBOOK.md](https://github.com/modemuser/contrastset/blob/main/NOTEBOOK.md), the chronological log of the release pass: every run,
 check and decision, mistakes included.
 
 Build and check **contrast sets**, matched pairs of texts that differ in exactly one
@@ -39,8 +39,8 @@ whether it knows); the **generator model** writes sentence frames and never sees
 what the subject knows.
 
 ```bash
-pip install "contrastset @ git+https://github.com/modemuser/contrastset@v0.1.0"   # core: grade/generate/check over HTTP
-pip install "contrastset[hf] @ git+https://github.com/modemuser/contrastset@v0.1.0"  # + in-process transformers, log-prob grading
+pip install contrastset          # core: grade/generate/check over HTTP (Ollama, OpenAI-compatible servers)
+pip install "contrastset[hf]"    # + in-process transformers: log-prob grading, the example-00 probe
 contrastset --help
 ```
 
@@ -63,7 +63,7 @@ Not a contrastset feature but a check on the stage after it: a difference-of-mea
 probe on Marks and Tegmark's true/false statements, on Qwen3-8B, with a frozen split
 and the expected per-layer AUC. If your probe code can't reproduce this, a null
 result on your own pairs means nothing. See
-[`examples/00-marks-tegmark/README.md`](examples/00-marks-tegmark/README.md); it is
+[`examples/00-marks-tegmark/README.md`](https://github.com/modemuser/contrastset/blob/main/examples/00-marks-tegmark/README.md); it is
 also the opt-in smoke test (see Testing).
 
 ### 01 · lexical control: spec, inline slots, hand-written frame, `check`
@@ -321,7 +321,7 @@ Graded files are compared within a tolerance, not bit for bit: the refusal mass
 
 ## Lessons
 
-Two things building this tool taught, with the data in [FINDINGS.md](FINDINGS.md):
+Two things building this tool taught, with the data in [FINDINGS.md](https://github.com/modemuser/contrastset/blob/main/FINDINGS.md):
 
 - **Tokenization undercount.** Log-prob grading over the tokenizer's own
   segmentation undercounts multi-token answers by up to 26×, because the model
@@ -342,9 +342,9 @@ version.
 No probing, plotting or model internals in the package: output is a dataset file;
 probe with TransformerLens, nnsight or whatever you already use. (Example 00 has a
 small probe script, outside the package, as a check on that stage.) The design
-brief is [PLAN.md](PLAN.md); maintenance passes are logged in
-[NOTEBOOK.md](NOTEBOOK.md).
+brief is [PLAN.md](https://github.com/modemuser/contrastset/blob/main/PLAN.md); maintenance passes are logged in
+[NOTEBOOK.md](https://github.com/modemuser/contrastset/blob/main/NOTEBOOK.md).
 
 ## Licence
 
-MIT, see [LICENSE](LICENSE).
+MIT, see [LICENSE](https://github.com/modemuser/contrastset/blob/main/LICENSE).
