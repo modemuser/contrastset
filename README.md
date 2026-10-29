@@ -334,7 +334,7 @@ Two things building this tool taught, with the data in [FINDINGS.md](https://git
   bins a single prompt line can create.
 
 The downstream experiment (difference-of-means probes on Qwen3-8B, where example 00
-comes from) is kept in a separate repository, knowing-probe, which pins this
+comes from) is kept in a separate repository, [knowing-probe](https://github.com/modemuser/knowing-probe), which pins this
 version.
 
 ## Not in scope
