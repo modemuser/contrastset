@@ -16,6 +16,7 @@ from typing import IO
 
 from contrastset import __version__, jsonl
 from contrastset.adapters import make_adapter
+from contrastset.checks import DEFAULT_CHECKS
 from contrastset.records import Entity, GradedEntity, GradedView, Thresholds, sha256_file
 
 
@@ -272,11 +273,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="verb", required=True)
 
     g = sub.add_parser("grade", help="census of what the subject model knows, graded behaviourally")
-    g.add_argument("entities", nargs="?", help="entity JSONL file, or - for stdin")
+    g.add_argument("entities", nargs="?", help="entity JSONL file, or - for stdin (required unless --priors)")
     _add_model_args(g, "subject", required=False)
     g.add_argument("--template",
-                   help="prompt template: a file path, or a built-in chat format (qwen3-nothink). No default: "
-                        "the template decides what the model sees, so it is always an explicit choice")
+                   help="prompt template (required unless --priors): a file path, or a built-in chat format "
+                        "(qwen3-nothink). No default: the template decides what the model sees, so it is always an "
+                        "explicit choice; its sha256 goes into every graded line")
     g.add_argument("-o", "--output", help="write graded JSONL here instead of stdout")
     g.add_argument("--limit", type=int, help="grade only the first N entities")
     g.add_argument("-n", type=int, default=8, help="sampled completions per question (default: 8); 0 with --logprob "
@@ -291,14 +293,16 @@ def main(argv: Sequence[str] | None = None) -> int:
                    help=f"confidently_wrong if modal wrong answer share >= this (default: {defaults.consistency_min})")
     g.add_argument("--refusal-min", type=float, default=defaults.refusal_min,
                    help=f"refused if refusal share >= this (default: {defaults.refusal_min})")
-    g.add_argument("--language", default="en", help="comma-separated languages for articles and refusal phrases")
+    g.add_argument("--language", default="en",
+                   help="comma-separated languages for articles and refusal phrases (default: en)")
     g.add_argument("--refusal-phrases", help="file with one refusal phrase per line; overrides the template's list")
     g.add_argument("--top-k", type=int, help="sample only from the k most likely tokens (ollama, hf); default: "
                                              "the server's/model's own setting for ollama, off for hf")
     g.add_argument("--top-p", type=float, help="nucleus sampling cut-off (ollama, hf); defaults as for --top-k")
     g.add_argument("--logprob", action="store_true",
                    help="also judge each question from untempered log-probabilities (mass of the correct, modal and "
-                        "refusal answers), binned with the same thresholds; needs --adapter hf")
+                        "refusal answers, summed over every tokenization; pruned mass recorded as a bound), binned "
+                        "with the same thresholds; needs --adapter hf. With -n 0 the probabilities alone decide")
     g.add_argument("--priors", metavar="GRADED", help="instead of grading: mark default guesses (prior_guess) "
                                                       "in a finished graded file and write it out")
     g.add_argument("--prior-group", metavar="FIELD", help="group for --priors, e.g. answer.country or meta.country_qid")
@@ -315,7 +319,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                                       "needed if any slot uses source 'graded'")
     _add_model_args(gen, "generator", required=False)
     gen.add_argument("--frames-from", metavar="PAIRS", help="reuse the frames of an existing pair file instead of "
-                                                           "calling the generator (reproduces Haiku-made pairs)")
+                                                           "calling the generator (rebuilds pairs a generator model made earlier)")
     gen.add_argument("--candidates", action="store_true",
                      help="print the flattened (entity, question) candidates of --graded as JSONL and exit; "
                           "each line is a valid `file` slot source line, so filter with jq and feed it back")
@@ -330,17 +334,19 @@ def main(argv: Sequence[str] | None = None) -> int:
     c.add_argument("pairs", help="pair JSONL (from `generate` or anywhere: {\"a\": ..., \"b\": ...} per line), or -")
     c.add_argument("--spec", help="the spec: activates its `checks` and enables the example checks")
     c.add_argument("--checks", help="comma-separated checks to run (built-in names or dotted paths); "
-                                    f"default: the spec's, else {','.join(['length', 'overlap', 'slot_diff', 'duplicates', 'example_similarity', 'example_reuse'])}")
+                                    f"default: the spec's, else {','.join(DEFAULT_CHECKS)}")
     c.add_argument("--require", action="append", default=[], metavar="CHECK_ID",
                    help="fail the run if this check was skipped on any pair (repeatable); a skip is not a pass")
     c.add_argument("--max-fail-rate", type=float, default=0.0,
                    help="exit 1 if more than this share of pairs fail (default: 0, any failure)")
-    c.add_argument("--graded", help="graded JSONL, for checks that need answers (behaviour)")
+    c.add_argument("--graded", help="graded JSONL, for checks that need answers (behaviour); with a subject model, "
+                                    "its template hash must match --template")
     _add_model_args(c, "subject", required=False, prefix="subject-")
     c.add_argument("--template", help="subject prompt template, for checks that ask the subject model; must be the "
                                       "one the --graded file was made with")
     c.add_argument("--allow-template-mismatch", action="store_true",
-                   help="ask the subject with a different template than it was graded with (recorded in provenance)")
+                   help="ask the subject with a different template than the --graded file was made with (recorded "
+                        "in provenance)")
     c.add_argument("-o", "--output", help="write check JSONL here instead of stdout")
     c.set_defaults(func=_check)
 

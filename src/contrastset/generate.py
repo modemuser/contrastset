@@ -108,8 +108,6 @@ def load_spec(path: str | Path) -> tuple[Spec, str]:
 Candidate = dict[str, Any]  # flat fields; always has "value"
 
 
-CANDIDATE_CORE = ("value", "entity", "question", "question_text", "bin", "entity_bin", "type",
-                  "correct_rate", "consistency", "refusal_rate", "n_correct", "n", "prior_guess")
 _SKIP_EXTRA = {"samples", "provenance", "thresholds", "bin_counts", "aggregation", "gate", "self_report"}
 
 

@@ -128,7 +128,7 @@ def _graded_row(town: str, bins: dict[str, tuple[str, float]]) -> dict:  # type:
 def test_familiar_default_and_range_filters() -> None:
     from contrastset.records import GradedEntity, GradedSource
 
-    graded = generate.graded_candidates([GradedEntity.model_validate(r) for r in [
+    graded = generate.graded_candidates([GradedEntity.model_validate(r) for r in [  # type: ignore[misc]  # meets GradedView structurally
         _graded_row("Kežmarok", {"country": ("known", 1.0), "region": ("known", 0.88), "river": ("unstable", 0.0)}),
         _graded_row("Coimbra", {"country": ("known", 1.0), "region": ("known", 1.0), "river": ("unstable", 0.62)}),
         _graded_row("Nowhere", {"country": ("unstable", 0.25), "region": ("refused", 0.0), "river": ("refused", 0.0)}),

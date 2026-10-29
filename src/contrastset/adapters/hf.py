@@ -389,10 +389,10 @@ class HFAdapter:
         if want_states:
             resolved = [self._position(p, n_prompt, n_total) for p in positions]
             n_layers = len(out.hidden_states)
-            layer_idx = [l if l >= 0 else n_layers + l for l in layers]
-            if any(not 0 <= l < n_layers for l in layer_idx):
+            layer_idx = [layer if layer >= 0 else n_layers + layer for layer in layers]
+            if any(not 0 <= layer < n_layers for layer in layer_idx):
                 raise AdapterError(f"layers {list(layers)} out of range 0..{n_layers - 1}")
-            acts = torch.stack([out.hidden_states[l][0, resolved] for l in layer_idx]).float().cpu().numpy()
+            acts = torch.stack([out.hidden_states[layer][0, resolved] for layer in layer_idx]).float().cpu().numpy()
             result["activations"] = acts
             sidecar = {
                 "model": self.describe(), "prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest(),

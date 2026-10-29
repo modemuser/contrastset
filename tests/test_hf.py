@@ -1,6 +1,7 @@
 """The HF adapter on a tiny randomly initialised model built in memory: no download."""
 
 import math
+from typing import Any
 
 import pytest
 
@@ -134,9 +135,10 @@ def test_prefix_mass_sums_over_every_segmentation() -> None:
     a.PREFIX_PRUNE = 0.0  # nothing pruned: the sum must be exact
     m = a.prefix_mass(prompt, "ab")
     raw = m["raw"]
+    assert raw is not None
     assert m["raw_pruned_max"] == 0.0
 
-    def p_next(ids: list[int]) -> torch.Tensor:
+    def p_next(ids: list[int]) -> Any:
         with torch.no_grad():
             return torch.softmax(a.model(torch.tensor([ids])).logits[0, -1].float(), dim=-1)
 
@@ -151,6 +153,8 @@ def test_prefix_mass_sums_over_every_segmentation() -> None:
     a.PREFIX_PRUNE = 0.5  # prune every partial path: the bound must account for exactly what was dropped
     m2 = a.prefix_mass(prompt, "ab")
     dropped = float(p1[vocab["a"]])  # the [a, ...] path, the only partial path
-    assert m2["raw"] == pytest.approx(float(p1[vocab["ab"]] + p1[vocab["abc"]]), rel=1e-4)
-    assert m2["raw_pruned_max"] == pytest.approx(dropped, rel=1e-4)
-    assert m2["raw"] <= raw <= m2["raw"] + m2["raw_pruned_max"] + 1e-9
+    raw2, pruned2 = m2["raw"], m2["raw_pruned_max"]
+    assert raw2 is not None and pruned2 is not None
+    assert raw2 == pytest.approx(float(p1[vocab["ab"]] + p1[vocab["abc"]]), rel=1e-4)
+    assert pruned2 == pytest.approx(dropped, rel=1e-4)
+    assert raw2 <= raw <= raw2 + pruned2 + 1e-9

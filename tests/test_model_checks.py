@@ -4,6 +4,8 @@ Deliberately separate from test_checks.py: these go through adapters."""
 import json
 from pathlib import Path
 
+import pytest
+
 from contrastset import cli
 from contrastset.adapters import FakeAdapter
 from contrastset.checks import model
@@ -50,7 +52,7 @@ def test_behaviour_check_asks_the_subject_and_skips_pairs_without_fills(tmp_path
     assert min(seeds) >= 10_000  # never the grade's seeds
 
 
-def test_blind_judge_reports_accuracy_and_fails_a_leaky_set(monkeypatch) -> None:
+def test_blind_judge_reports_accuracy_and_fails_a_leaky_set(monkeypatch: pytest.MonkeyPatch) -> None:
     pairs = [PairView.model_validate({"a": f"plain text {i}", "b": f"INTENT text {i}"}) for i in range(20)]
     # A judge that always finds the side containing INTENT: a surface leak.
     judge = FakeAdapter(lambda prompt, t, s: "1" if "1: INTENT" in prompt else "2")

@@ -43,7 +43,7 @@ hf = [
 ]
 
 [dependency-groups]
-dev = ["pytest>=8", "mypy>=1.10", "types-pyyaml"]
+dev = ["pytest>=8", "mypy>=1.10", "types-pyyaml", "ruff>=0.14"]
 
 [build-system]
 requires = ["uv_build>=0.9,<0.13"]
@@ -56,3 +56,14 @@ markers = ["live: talks to a real model server; skipped unless CONTRASTSET_LIVE_
 [tool.mypy]
 strict = true
 plugins = ["pydantic.mypy"]
+files = ["src", "tests"]
+
+[tool.ruff]
+line-length = 130
+# scripts/ are the research scripts behind FINDINGS.md, kept exactly as they were run
+extend-exclude = ["runs", "scripts"]
+
+[tool.ruff.lint]
+# ruff's long-standing defaults (pyflakes + pycodestyle errors), pinned so a newer ruff
+# does not change what "lint passes" means
+select = ["E4", "E7", "E9", "F"]

@@ -152,3 +152,22 @@ steady, ~9 min of reading.
   version that made them.
 - Fast tests: 74 passed, 1 skipped, 1 xfailed (pass-through test file not part of this
   commit: 71 passed in this commit's own tree).
+
+**13:20 · Section 2, code cleanup (no behaviour change).**
+- Dead code: `generate.CANDIDATE_CORE` (defined, never used). No stale TODO/FIXME in
+  `src/`; no experiment-only code paths found (river/town names appear only in
+  docstrings and comments as examples). `scripts/` are research scripts, left as run.
+- `--help` against the code: `grade --template` and `entities` now say "required unless
+  --priors" (argparse can't require them, since `--priors` needs neither; the check
+  is in `_grade`); `--language` shows its default; `--logprob` mentions the
+  tokenization sum, the pruned-mass bound and `-n 0`; `generate --frames-from` no longer
+  says "Haiku-made"; `check --checks` prints `checks.DEFAULT_CHECKS` instead of a copied
+  list; `check --graded`/`--allow-template-mismatch` name the template-hash guard.
+  `--graded`, `--require`, `--logprob`, `--allow-template-mismatch` were all present.
+  Not changed, reported: `check` has no `--limit` (PLAN.md asked for it on every verb).
+- Lint: ruff added to the dev group; rules pinned to ruff's classic defaults
+  (E4, E7, E9, F) after `uv lock` pulled ruff 0.17.3, whose wider default set flagged
+  refactors (context managers, blind excepts), not mechanical fixes. One fix: `l` →
+  `layer` in `HFAdapter.run` (E741). `scripts/` excluded. mypy scope set to src+tests.
+- `tests/test_passthrough.py` (the JSONL contract) and the test typing fixes from 12:29–12:31.
+- ruff, mypy (28 files), fast tests: 74 passed, 1 skipped, 1 xfailed.

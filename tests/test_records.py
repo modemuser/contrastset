@@ -66,6 +66,7 @@ def test_spec_with_graded_selectors() -> None:
             "order": "both",
         },
     })
+    assert spec.slots is not None
     b = spec.slots.select["b"]
     assert isinstance(b, GradedSource) and b.where["q.country"] == "known"
     assert spec.slots.needs_graded()
@@ -84,6 +85,7 @@ def test_spec_without_graded_file_mixes_inline_and_file_sources() -> None:
         "checks": [{"use": "length", "severity": "fail", "options": {"max_word_diff": 2}},
                    {"use": "mychecks.blind_judge"}],
     })
+    assert spec.slots is not None
     assert isinstance(spec.slots.select["a"], InlineSource) and isinstance(spec.slots.select["b"], FileSource)
     assert not spec.slots.needs_graded()
     assert spec.checks is not None and spec.checks[1].severity is None
