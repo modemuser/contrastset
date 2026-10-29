@@ -50,7 +50,7 @@ so its CSVs are not redistributed. `fetch_data.py` downloads them at commit 5d1c
 checks sha256 (f2560a0c… cities, 9afa97c1… sp_en_trans). The frozen split is committed
 as `split.json` (held-out cities / Spanish words, seed 20261029): 249 cities and 115
 words, the same as knowing-probe's sidecars. `expected-auc.jsonl` = knowing-probe
-`runs/step0/*-summary.json` per layer (commit 911d9e0 there). Cities' held-out AUC is
+`runs/step0/*-summary.json` per layer (commit e61627a there). Cities' held-out AUC is
 0.994–1.000 over layers 15–35 and 0.985 at layer 36.
 
 **12:28 · `check` on the cities pairs** (748 pairs from `make_pairs.py`, checks
@@ -136,7 +136,7 @@ layers 1–36 = 0.0 for both. 0.27 s/statement, ~9 min of reading.
   kept).
 
 **13:24 · Section 3, Marks & Tegmark step 0 as `examples/00-marks-tegmark/` (`dab1434`).**
-From knowing-probe (commit 911d9e0 there; its copy stays): `split.json`,
+From knowing-probe (commit e61627a there; its copy stays): `split.json`,
 `expected-auc.jsonl` (its step 0 per-layer summaries, incl. shuffle control and
 |cos(arrow, PC1)|), and `auc.py`, a trimmed copy of `mt_acts.py` + `mt_probe.py` +
 `knowing_probe.acts/arrow`: same hook-based last-token reader, same split function,
