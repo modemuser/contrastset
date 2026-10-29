@@ -171,3 +171,16 @@ steady, ~9 min of reading.
   `layer` in `HFAdapter.run` (E741). `scripts/` excluded. mypy scope set to src+tests.
 - `tests/test_passthrough.py` (the JSONL contract) and the test typing fixes from 12:29–12:31.
 - ruff, mypy (28 files), fast tests: 74 passed, 1 skipped, 1 xfailed.
+
+**13:24 · Section 3, Marks & Tegmark step 0 as `examples/00-marks-tegmark/`.**
+From knowing-probe (commit 911d9e0 there; nothing deleted there): `split.json` (frozen
+split, seed 20261029, 249 cities / 115 Spanish words held out), `expected-auc.jsonl`
+(its step 0 per-layer summaries, incl. shuffle control and |cos(arrow, PC1)|), and
+`auc.py`, a trimmed copy of `mt_acts.py` + `mt_probe.py` + `knowing_probe.acts/arrow`:
+same hook-based last-token reader, same split function, same arrow/projection/AUC, no
+plots, JSONL out; it refuses to run if the recomputed split differs from `split.json`.
+New: `fetch_data.py` (pinned commit + sha256, instead of copying the unlicensed CSVs)
+and `make_pairs.py` (cities as a pair file for `contrastset check`). README cites the
+paper, states the reproduced numbers and why the shuffled-label control does not fall
+to chance (true/false is PC1 from layer ~9).
+Not moved because it does not exist: a graded file for these statements (see 12:12).
