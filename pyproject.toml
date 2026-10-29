@@ -51,12 +51,23 @@ build-backend = "uv_build"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-markers = ["live: talks to a real model server; skipped unless CONTRASTSET_LIVE_* env vars are set"]
+# Fast tier by default; `pytest -m smoke` / `pytest -m regrade` select the opt-in tiers (README, Testing).
+addopts = "-m 'not smoke and not regrade'"
+markers = [
+    "live: talks to a real model server; skipped unless CONTRASTSET_LIVE_* env vars are set",
+    "smoke: opt-in, loads Qwen3-8B on HF and runs example 00 end to end (~10 min)",
+    "regrade: opt-in, slow, regrades the 29 towns with --logprob against the frozen file (~25 min)",
+]
 
 [tool.mypy]
 strict = true
 plugins = ["pydantic.mypy"]
 files = ["src", "tests"]
+
+[[tool.mypy.overrides]]
+# optional extras (hf, anthropic): type-checked where installed, not required for the check to run
+module = ["torch", "torch.*", "transformers", "transformers.*", "numpy", "numpy.*", "huggingface_hub", "anthropic"]
+ignore_missing_imports = true
 
 [tool.ruff]
 line-length = 130

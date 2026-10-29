@@ -184,3 +184,23 @@ and `make_pairs.py` (cities as a pair file for `contrastset check`). README cite
 paper, states the reproduced numbers and why the shuffled-label control does not fall
 to chance (true/false is PC1 from layer ~9).
 Not moved because it does not exist: a graded file for these statements (see 12:12).
+
+**13:30 · Section 4, test tiers.**
+- fast (default): `addopts = -m 'not smoke and not regrade'`; 74 passed, 1 skipped
+  (69 + 1 in the brief's count was 70 + 1 skipped here), 1 xfailed. Also on Python
+  3.11 without torch: 66 passed, 2 skipped (test_hf skips as a module), 1 xfailed.
+- smoke (`-m smoke`, `tests/test_smoke.py`): example 00 end to end: fetch, `check` the
+  748 cities pairs (`slot_diff,duplicates` must be ok on every pair), `auc.py` for both
+  sets, assert held-out AUC ≥ 0.95 at layers 20–36, print drift from
+  `expected-auc.jsonl`. No grade/generate step: there is no graded file for these
+  statements (12:12).
+- regrade (`-m regrade`, `tests/test_regrade.py`): substitute for the brief's "regrade
+  the step 0 statements" (nothing to regrade there): regrades the 29 towns, template B,
+  `-n 0 --logprob`, against `tests/regrade/graded-29-B.jsonl` = the 12:49 baseline
+  grade (raw sha256 a77d9d23…, made at e30724a before any change). Bins and modal
+  answers exact; `p_correct`/`p_modal` (raw and sampler) within the larger pruned mass
+  + 1e-6. For Thomas to ratify.
+- CI (`.github/workflows/ci.yml`): fast tier only, ruff + mypy + pytest on 3.11 and
+  3.14, `uv sync --locked` without extras. mypy marks the optional extras' modules
+  (torch, transformers, numpy, huggingface_hub, anthropic) `ignore_missing_imports`,
+  so it passes without them and still checks against them where installed.
