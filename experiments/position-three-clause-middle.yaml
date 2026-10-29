@@ -1,0 +1,29 @@
+# Experiment 1, control (a): "already answered one clause" versus "nearest to where
+# the model starts writing". Three clauses, the middle-band town M rotated through
+# first, middle and last on both sides (each position twice per combination), same
+# towns and frames. Middle has one answer before it but is not nearest; last is both.
+contrast: the position of the half-known town among three clauses
+# The 8 three-clause frames (frames/v3, Haiku) of runs/pairs-three-clause-v1.jsonl, copied verbatim.
+frames:
+  - "Which river flows through [[X1]], which river runs through [[X2]], and what river passes through [[X3]]?"
+  - "What river runs through [[X1]], what river flows through [[X2]], and which river goes through [[X3]]?"
+  - "I would like to learn which river flows through [[X1]], which river runs through [[X2]], and which river passes through [[X3]]."
+  - "Which river runs through [[X1]], which river passes through [[X2]], and what river flows through [[X3]]?"
+  - "Which river flows through [[X1]] and what river runs through [[X2]] and which river passes through [[X3]]?"
+  - "Tell me which river flows through [[X1]], what river runs through [[X2]], and which river goes through [[X3]]."
+  - "What river passes through [[X1]], which river flows through [[X2]], and what river runs through [[X3]]?"
+  - "Which river goes through [[X1]], what river passes through [[X2]], and which river flows through [[X3]]?"
+slot_defaults:
+  familiar: true
+slots:
+  select:
+    k1:     {source: graded, where: {question: river, correct_rate: {min: 0.875}}}
+    k3:     {source: graded, where: {question: river, correct_rate: {min: 0.875}}}
+    middle: {source: graded, where: {question: river, correct_rate: {min: 0.2, max: 0.7}}}
+  sides:
+    a: [k1, middle, k3]
+    b: [k1, k3, middle]
+  same: [question, type]
+  order: rotations
+constraints:
+  one_clause_per_slot: true

@@ -1,0 +1,31 @@
+---
+# Same phrase list as examples/03 (the library's built-in English list), so refusal
+# counts compare across templates. This template does NOT invite refusals.
+refusal_phrases:
+  - "i don't know"
+  - "i do not know"
+  - "i'm not sure"
+  - "i am not sure"
+  - "not sure"
+  - "no information"
+  - "don't have information"
+  - "do not have information"
+  - "don't have enough"
+  - "not familiar"
+  - "no idea"
+  - "not aware"
+  - "i cannot"
+  - "i can't"
+  - "unable to"
+  - "i couldn't find"
+  - "uncertain"
+  - "unknown"
+  - "no reliable"
+---
+<|im_start|>user
+{{question}} Answer with the name only.<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+

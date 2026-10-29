@@ -1,0 +1,40 @@
+[project]
+name = "contrastset"
+version = "0.1.0.dev0"
+description = "Build and check contrast sets (matched stimulus pairs) for interpretability experiments on local LLMs."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Thomas" }]
+dependencies = [
+    "pydantic>=2.7",
+    "httpx>=0.27",
+    "pyyaml>=6",
+]
+
+[project.scripts]
+contrastset = "contrastset.cli:main"
+
+[project.optional-dependencies]
+anthropic = [
+    "anthropic>=2.3.0",
+]
+hf = [
+    "torch>=2.14.1",
+    "transformers>=5.21.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=8", "mypy>=1.10", "types-pyyaml"]
+
+[build-system]
+requires = ["uv_build>=0.9,<0.13"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["live: talks to a real model server; skipped unless CONTRASTSET_LIVE_* env vars are set"]
+
+[tool.mypy]
+strict = true
+plugins = ["pydantic.mypy"]

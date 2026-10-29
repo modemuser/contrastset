@@ -1,0 +1,36 @@
+# Is the second-clause help (FINDINGS.md, Tábor and Düren) about having already
+# answered, or about recency (being nearest the point where the model starts writing)?
+# Three clauses, the swapped one rotated through first, middle and last with the
+# same towns and frame. Middle has one answer before it but is not nearest; last is
+# both. Middle like last: having answered helps. Middle like first: recency.
+#   contrastset generate experiments/three-clause-position.yaml --graded runs/probe-v2-n24-qwen3-14b.jsonl ...
+contrast: whether the model knows the answer to every clause of the question
+examples:  # style only; towns outside the probe set
+  - a: Which river flows through Passau, which through Tübingen, and which through Lyon?
+    b: Which river flows through Passau, which through Zwettl, and which through Lyon?
+  - a: What river runs through Fulda, what river runs through Pisa, and what river runs through Bamberg?
+    b: What river runs through Fulda, what river runs through Nyons, and what river runs through Bamberg?
+  - a: Name the rivers of Lyon, Tübingen and Bamberg.
+    b: Name the rivers of Lyon, Lauterbach and Bamberg.
+slot_defaults:
+  familiar: true   # every town also has its other questions known: entity familiar, one fact varies
+slots:
+  # The swapped slot takes every town that is not known, on purpose: the middle
+  # correct_rate band (half-known, e.g. Düren) is where position effects show up.
+  # Clean known-versus-unknown contrast sets would use {max: 0.125} instead.
+  select:
+    k1:    {source: graded, where: {question: river, correct_rate: {min: 0.875}}}
+    k2:    {source: graded, where: {question: river, correct_rate: {min: 0.875}}}
+    k3:    {source: graded, where: {question: river, correct_rate: {min: 0.875}}}
+    swap:  {source: graded, where: {question: river, correct_rate: {max: 0.75}}}
+  sides:
+    a: [k1, k2, k3]
+    b: [k1, swap, k3]
+  same: [question, type]
+  order: rotations
+constraints:
+  language: en
+  one_clause_per_slot: true
+  register: plain, neutral
+  max_words: 30
+  forbidden_words: [know, knows, known, sure, remember, recall, familiar, unknown, obscure, famous]

@@ -1,0 +1,22 @@
+# 01 · lexical control
+#
+# No model, no graded file. Two inline word lists and two hand-written frames:
+# every pair differs in one neutral noun and nothing else. A probe that separates
+# these pairs is picking up word identity, not the variable you care about, so a
+# control set like this belongs next to every real contrast set.
+contrast: which of two unrelated household nouns fills the slot
+
+# Hand-written frames: [[X1]] is replaced by side a's value on one side and by
+# side b's on the other. With frames given, no generator model is called.
+frames:
+  - The [[X1]] is next to the window.
+  - Someone moved the [[X1]] yesterday.
+
+slots:
+  select:
+    a: {source: inline, values: [table, lamp, chair]}
+    b: {source: inline, values: [shelf, sofa, desk]}
+
+checks:
+  - use: length
+  - use: overlap

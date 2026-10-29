@@ -1,0 +1,11 @@
+---
+# Written against the instruction below, which invites "I don't know".
+refusal_phrases: ["i don't know", "i do not know", "not sure", "unsure", "no idea", "cannot answer"]
+---
+<|im_start|>user
+{{question}} Answer with just the city name. If you do not know, say "I don't know".<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+

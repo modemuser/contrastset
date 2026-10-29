@@ -1,0 +1,51 @@
+# Two-clause questions: "two known clauses" (side a) versus "one known clause and one
+# the subject model guesses at" (side b). Unit is the (entity, question) pair; every
+# slot asks about the river. Run against a graded file:
+#   contrastset generate spec.yaml --graded graded.jsonl --adapter anthropic --model claude-haiku-5-5
+contrast: whether the model knows the answer to every clause of the question
+examples:  # style only; towns deliberately outside the probe set
+  - a: Which river flows through Passau, and which river flows through Tübingen?
+    b: Which river flows through Passau, and which river flows through Zwettl?
+  - a: What river runs through Fulda, and what river runs through Bamberg?
+    b: What river runs through Fulda, and what river runs through Lauterbach?
+  - a: Name the river that runs through Lyon and the river that runs through Pisa.
+    b: Name the river that runs through Lyon and the river that runs through Nyons.
+slot_defaults:
+  familiar: true   # every town also has its other questions known: entity familiar, one fact varies
+slots:
+  # Strict rates, not bins: at n = 8 only the extremes are stable (FINDINGS.md).
+  # familiar: true is the default, so every town also has country and region known:
+  # the entity is familiar, only the river fact varies.
+  select:
+    shared:  {source: graded, where: {question: river, correct_rate: {min: 0.875}}}
+    known:   {source: graded, where: {question: river, correct_rate: {min: 0.875}}}
+    unknown: {source: graded, where: {question: river, correct_rate: {max: 0.125}, bin: [unstable, refused]}}
+  sides:
+    a: [shared, known]
+    b: [shared, unknown]
+  same: [question, type]
+  order: both
+  # Controlled, not left to chance: is the neighbour town in the same country? Both
+  # sides share the level (shared-known and shared-unknown are both same-country, or
+  # both not), so the factor never differs between a and b. Tests whether the frame
+  # leaks geographic context across clauses (FINDINGS.md, the Tábor anomaly).
+  factors:
+    neighbour_country:
+      field: answer.country
+      between: [[shared, known], [shared, unknown]]
+constraints:
+  language: en
+  one_clause_per_slot: true
+  register: plain, neutral
+  max_words: 25
+  forbidden_words: [know, knows, known, sure, remember, recall, familiar, unknown, obscure, famous]
+checks:
+  - use: length
+  - use: overlap
+  - use: slot_diff
+  - use: duplicates
+  - use: example_similarity
+  - use: example_reuse
+  # Asks the subject model: is the known clause still answered and the unknown one
+  # still not, inside the composite question? Needs --graded and --subject-model.
+  - use: behaviour

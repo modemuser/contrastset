@@ -1,0 +1,28 @@
+# Experiment 1: are half-known facts retrieved more often in the second clause?
+# Each middle-band town M (river correct_rate 0.2-0.7, entity familiar) is paired
+# with one strictly known town K. Side a asks (K, M): M second. Side b asks (M, K):
+# M first. Same frame, same partner, only the position of M differs.
+#   contrastset generate experiments/position-middle-band.yaml --graded runs/wikidata-qwen3-14b.jsonl | jq -c -s 'group_by(.fills.b[0].value) | map(.[0]) | .[]'
+contrast: whether the half-known town is asked about first or second
+# The 8 frames/v4 frames of examples/03-two-clause-rivers/pairs.jsonl (Haiku), copied verbatim.
+frames:
+  - "Which river flows through [[X1]], and which river flows through [[X2]]?"
+  - "What river runs through [[X1]], and what river runs through [[X2]]?"
+  - "Tell me which river flows through [[X1]], and which river flows through [[X2]]."
+  - "Which river flows through [[X1]]? And which river flows through [[X2]]?"
+  - "Which river flows through [[X1]] and, separately, which river flows through [[X2]]?"
+  - "I would like to hear which river flows through [[X1]], and also which river runs through [[X2]]."
+  - "Please state what river runs through [[X1]], then what river runs through [[X2]]."
+  - "Which river runs through [[X1]], and which river flows through [[X2]] in turn?"
+slot_defaults:
+  familiar: true
+slots:
+  select:
+    known:  {source: graded, where: {question: river, correct_rate: {min: 0.875}}}
+    middle: {source: graded, where: {question: river, correct_rate: {min: 0.2, max: 0.7}}}
+  sides:
+    a: [known, middle]
+    b: [middle, known]
+  same: [question, type]
+constraints:
+  one_clause_per_slot: true

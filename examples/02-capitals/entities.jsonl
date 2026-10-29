@@ -1,0 +1,37 @@
+{"entity": "France", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of France?", "answers": ["Paris"]}]}
+{"entity": "Germany", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Germany?", "answers": ["Berlin"]}]}
+{"entity": "Japan", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Japan?", "answers": ["Tokyo"]}]}
+{"entity": "Kenya", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Kenya?", "answers": ["Nairobi"]}]}
+{"entity": "Peru", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Peru?", "answers": ["Lima"]}]}
+{"entity": "Canada", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Canada?", "answers": ["Ottawa"]}]}
+{"entity": "Australia", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Australia?", "answers": ["Canberra"]}]}
+{"entity": "Egypt", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Egypt?", "answers": ["Cairo"]}]}
+{"entity": "Norway", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Norway?", "answers": ["Oslo"]}]}
+{"entity": "Chile", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Chile?", "answers": ["Santiago"]}]}
+{"entity": "Thailand", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Thailand?", "answers": ["Bangkok", "Krung Thep"]}]}
+{"entity": "Poland", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Poland?", "answers": ["Warsaw", "Warszawa"]}]}
+{"entity": "Portugal", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Portugal?", "answers": ["Lisbon", "Lisboa"]}]}
+{"entity": "Turkey", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Turkey?", "answers": ["Ankara"]}]}
+{"entity": "Argentina", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Argentina?", "answers": ["Buenos Aires"]}]}
+{"entity": "Vietnam", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Vietnam?", "answers": ["Hanoi", "Hà Nội"]}]}
+{"entity": "Mongolia", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Mongolia?", "answers": ["Ulaanbaatar", "Ulan Bator"]}]}
+{"entity": "Bhutan", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Bhutan?", "answers": ["Thimphu"]}]}
+{"entity": "Laos", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Laos?", "answers": ["Vientiane"]}]}
+{"entity": "Mali", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Mali?", "answers": ["Bamako"]}]}
+{"entity": "Eritrea", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Eritrea?", "answers": ["Asmara"]}]}
+{"entity": "Suriname", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Suriname?", "answers": ["Paramaribo"]}]}
+{"entity": "Belize", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Belize?", "answers": ["Belmopan"]}]}
+{"entity": "Liechtenstein", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Liechtenstein?", "answers": ["Vaduz"]}]}
+{"entity": "Palau", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Palau?", "answers": ["Ngerulmud"]}]}
+{"entity": "Micronesia", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Micronesia?", "answers": ["Palikir"]}]}
+{"entity": "the Marshall Islands", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of the Marshall Islands?", "answers": ["Majuro"]}]}
+{"entity": "Tuvalu", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Tuvalu?", "answers": ["Funafuti"]}]}
+{"entity": "Kiribati", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Kiribati?", "answers": ["South Tarawa", "Tarawa"]}]}
+{"entity": "the Comoros", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of the Comoros?", "answers": ["Moroni"]}]}
+{"entity": "Vanuatu", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Vanuatu?", "answers": ["Port Vila", "Port-Vila"]}]}
+{"entity": "the Solomon Islands", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of the Solomon Islands?", "answers": ["Honiara"]}]}
+{"entity": "Burundi", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Burundi?", "answers": ["Gitega"]}]}
+{"entity": "Côte d'Ivoire", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Côte d'Ivoire?", "answers": ["Yamoussoukro"]}]}
+{"entity": "Sri Lanka", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Sri Lanka?", "answers": ["Sri Jayawardenepura Kotte", "Kotte"]}]}
+{"entity": "Myanmar", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Myanmar?", "answers": ["Naypyidaw", "Nay Pyi Taw", "Naypyitaw"]}]}
+{"entity": "Kazakhstan", "type": "country", "questions": [{"id": "capital", "q": "What is the capital of Kazakhstan?", "answers": ["Astana", "Nur-Sultan"]}]}

@@ -1,0 +1,19 @@
+# 02 · capitals
+#
+# New: slots come from a graded file. `grade` first finds out behaviourally what the
+# subject model knows; the spec then picks a known capital for side a and one it
+# does not know for side b. The frame is still hand-written, so no generator model.
+contrast: whether the subject model knows the capital of the country
+frames:
+  - What is the capital of [[X1]]?
+  - Which city is the capital of [[X1]]?
+slots:
+  select:
+    # Selectors filter the graded candidates (see `generate --candidates`).
+    a: {source: graded, where: {question: capital, bin: known}}
+    b: {source: graded, where: {question: capital, bin: [confidently_wrong, unstable, refused]}}
+checks:
+  - use: length
+  - use: overlap
+  - use: slot_diff
+  - use: duplicates

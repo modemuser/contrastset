@@ -1,0 +1,25 @@
+# 04 · intent pairs
+#
+# New: no `generate` at all. The pairs are hand-written (pairs.jsonl; these four are
+# stubs to be replaced by the real wall scenarios), and this spec only configures
+# `check`, so it has no slots. Two kinds of check beyond the surface ones:
+#   - a user-supplied check, by dotted path to intent_checks.py next to this file;
+#   - a blind judge: a model that sees both sides in random order and guesses which
+#     one is the intentional one. If it beats chance, the set leaks a surface cue.
+contrast: whether the person acts on purpose
+checks:
+  - use: length
+    options: {warn_words: 2, fail_words: 4}
+  # These pairs differ in a whole clause, not one word, so the overlap and diff
+  # thresholds are set for that contrast rather than left at the defaults.
+  - use: overlap
+    options: {warn_below: 0.5, fail_below: 0.3}
+  - use: slot_diff
+    options: {max_spans: 2}
+  - use: intent_checks.no_intent_words
+  - use: blind_judge
+    options:
+      target: describes someone doing something on purpose
+      target_side: b
+      adapter: anthropic
+      model: claude-haiku-5-5
