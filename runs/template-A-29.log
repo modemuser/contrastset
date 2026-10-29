@@ -1,0 +1,14 @@
+W1028 20:50:28.956000 52875 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]Loading weights: 100%|██████████| 399/399 [00:00<00:00, 4683.42it/s]
+grading 29 entities with Qwen/Qwen3-8B via hf, template examples/03-two-clause-rivers/template.txt, n=8 T=0.7 + greedy
+[   1/29] Heidelberg               known             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=known(8/8 ok, 0 ref)
+[   2/29] Bad Münstereifel         mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=confidently_wrong(0/8 ok, 0 ref)
+[   3/29] Avignon                  known             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=known(8/8 ok, 0 ref)
+[   4/29] Kežmarok                 mixed             country=known(8/8 ok, 0 ref)  region=confidently_wrong(1/8 ok, 0 ref)  river=unstable(0/8 ok, 0 ref)
+[   5/29] Kraków                   known             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=known(8/8 ok, 0 ref)
+[   6/29] Wipperfürth              mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=confidently_wrong(0/8 ok, 0 ref)
+[   7/29] Verona                   known             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=known(8/8 ok, 0 ref)
+[   8/29] Tolmin                   mixed             country=known(8/8 ok, 0 ref)  region=unstable(1/8 ok, 0 ref)  river=confidently_wrong(0/8 ok, 0 ref)
+[   9/29] Koblenz                  known             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=known(8/8 ok, 0 ref)
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/mp-6p1pj6lf'}
+  warnings.warn(

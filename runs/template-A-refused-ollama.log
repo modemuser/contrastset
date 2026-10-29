@@ -1,0 +1,67 @@
+grading 49 entities with qwen3:8b-fp16 via ollama, template examples/03-two-clause-rivers/template.txt, n=8 T=0.7 + greedy
+[   1/49] Seehausen                mixed             country=known(8/8 ok, 0 ref)  region=unstable(1/8 ok, 0 ref)  river=refused(0/8 ok, 7 ref)
+[   2/49] Oskarström               mixed             country=known(8/8 ok, 0 ref)  region=unstable(0/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[   3/49] Markušovce               mixed             country=known(8/8 ok, 0 ref)  region=confidently_wrong(0/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[   4/49] Sangüesa                 mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 5 ref)
+[   5/49] Lengenfeld               mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[   6/49] Albalat de la Ribera     mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[   7/49] Nödinge                  mixed             country=known(8/8 ok, 0 ref)  region=confidently_wrong(0/8 ok, 1 ref)  river=refused(0/8 ok, 8 ref)
+[   8/49] Saint-Juéry              mixed             country=known(7/8 ok, 1 ref)  region=known(7/8 ok, 1 ref)  river=refused(0/8 ok, 8 ref)
+[   9/49] Malgrate                 mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  10/49] Norrahammar              mixed             country=known(8/8 ok, 0 ref)  region=unstable(0/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  11/49] Oberaich                 mixed             country=known(8/8 ok, 0 ref)  region=confidently_wrong(0/8 ok, 0 ref)  river=refused(0/8 ok, 6 ref)
+[  12/49] San Biagio di Callalta   mixed             country=known(8/8 ok, 0 ref)  region=confidently_wrong(0/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  13/49] Villa d'Almè             mixed             country=known(8/8 ok, 0 ref)  region=confidently_wrong(1/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  14/49] Carcaixent               mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  15/49] Åstorp                   mixed             country=known(8/8 ok, 0 ref)  region=unstable(0/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  16/49] Camposampiero            mixed             country=known(8/8 ok, 0 ref)  region=confidently_wrong(0/8 ok, 0 ref)  river=refused(0/8 ok, 5 ref)
+[  17/49] Almassora                mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 7 ref)
+[  18/49] Surte                    mixed             country=known(7/8 ok, 1 ref)  region=unstable(1/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  19/49] Klippan                  mixed             country=known(8/8 ok, 0 ref)  region=confidently_wrong(0/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  20/49] Caorle                   mixed             country=known(8/8 ok, 0 ref)  region=unstable(4/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  21/49] Arenas de San Pedro      mixed             country=known(7/8 ok, 1 ref)  region=unstable(0/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  22/49] Cavallino-Treporti       mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  23/49] Älvängen                 mixed             country=known(8/8 ok, 0 ref)  region=unstable(0/8 ok, 0 ref)  river=refused(1/8 ok, 7 ref)
+[  24/49] Wittenberge              mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(1/8 ok, 7 ref)
+[  25/49] Simancas                 mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  26/49] Nerviano                 mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  27/49] Martinsicuro             mixed             country=known(8/8 ok, 0 ref)  region=confidently_wrong(0/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  28/49] Medina de Rioseco        mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  29/49] Landvetter               mixed             country=known(8/8 ok, 0 ref)  region=unstable(3/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  30/49] Wolfurt                  mixed             country=known(8/8 ok, 0 ref)  region=known(7/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  31/49] Písek                    mixed             country=known(8/8 ok, 0 ref)  region=refused(0/8 ok, 8 ref)  river=confidently_wrong(0/8 ok, 0 ref)
+[  32/49] Mariestad                mixed             country=known(8/8 ok, 0 ref)  region=known(7/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  33/49] Cabannes                 mixed             country=known(8/8 ok, 0 ref)  region=unstable(0/8 ok, 0 ref)  river=refused(0/8 ok, 5 ref)
+[  34/49] Brixlegg                 mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  35/49] Landeck                  mixed             country=known(8/8 ok, 0 ref)  region=refused(0/8 ok, 8 ref)  river=unstable(1/8 ok, 2 ref)
+[  36/49] Olofström                mixed             country=known(8/8 ok, 0 ref)  region=unstable(0/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  37/49] Zeltweg                  mixed             country=known(8/8 ok, 0 ref)  region=confidently_wrong(0/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  38/49] Mjölby                   mixed             country=known(8/8 ok, 0 ref)  region=confidently_wrong(0/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  39/49] Caltanissetta            mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 4 ref)
+[  40/49] Alzira                   mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 6 ref)
+[  41/49] Lignano Sabbiadoro       mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  42/49] Lodi                     mixed             country=known(8/8 ok, 0 ref)  region=confidently_wrong(1/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  43/49] Kufstein                 mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 7 ref)
+[  44/49] Vicenza                  mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  45/49] Brescia                  mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  46/49] Kempten                  mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 6 ref)
+[  47/49] Mölnlycke                mixed             country=known(8/8 ok, 0 ref)  region=unstable(3/8 ok, 0 ref)  river=unstable(0/8 ok, 3 ref)
+[  48/49] Monza                    mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  49/49] Feldkirch                mixed             country=known(8/8 ok, 0 ref)  region=refused(0/8 ok, 8 ref)  river=unstable(0/8 ok, 0 ref)
+
+graded 49 entities, 147 (entity, question) pairs
+question bins (the slot unit):
+  country      known=49  confidently_wrong=0  unstable=0  refused=0
+  region       known=23  confidently_wrong=11  unstable=12  refused=3
+  river        known=0  confidently_wrong=1  unstable=3  refused=45
+  all          known=72  confidently_wrong=12  unstable=15  refused=48
+correct_rate bands (<= 1/8 | middle | >= 7/8): middle = half-known, keep for graded-confidence work
+  country      0 | 0 | 49
+  region       23 | 3 | 23
+  river        49 | 0 | 0
+entity bins:  known=0  confidently_wrong=0  unstable=0  refused=0  mixed=49
+worst-question report (49 mixed):
+  24 of 49 would be uniform without their single odd question
+    drop river       23 entities flip   (refused->known x23)
+    drop country      1 entities flip   (known->unstable x1)
+exit 0

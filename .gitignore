@@ -18,9 +18,38 @@ dist-placeholder/
 .cache/
 hf-cache/
 
-# Run outputs (graded and generated files, logs, chain scripts): large and machine-specific.
-# The small files the examples and tests need live in examples/ and tests/regrade/.
-runs/
+# Run outputs: ignored, except the files FINDINGS.md and experiments/README.md cite (listed
+# below), so every finding can be checked from the repository. Chain scripts and download
+# logs stay out (machine-specific).
+runs/*
+!runs/composite-position-middle-v1.jsonl
+!runs/composite-position-three-v1.jsonl
+!runs/composite-two-clause-v1.jsonl
+!runs/diag-hf.json
+!runs/diag-ollama.json
+!runs/pairs-position-middle-v1.jsonl
+!runs/pairs-position-three-v1.jsonl
+!runs/pairs-three-clause-v1.jsonl
+!runs/pairs-two-clause-v1.jsonl
+!runs/parity-hf-logprob-29.jsonl
+!runs/parity-hf-qwen3-8b.jsonl
+!runs/parity-ollama-8b-fp16.jsonl
+!runs/priors-hf-B.log
+!runs/probe-v2-n24-qwen3-14b.jsonl
+!runs/probe-v2-qwen3-14b.jsonl
+!runs/template-A-29-ollama.jsonl
+!runs/template-A-29-ollama.log
+!runs/template-A-29.jsonl
+!runs/template-A-29.log
+!runs/template-A-refused-ollama.jsonl
+!runs/template-A-refused-ollama.log
+!runs/template-B-29-ollama.jsonl
+!runs/template-B-refused-ollama.jsonl
+!runs/wikidata-qwen3-14b.jsonl
+!runs/wikidata-qwen3-8b-fp16.jsonl
+!runs/wikidata-qwen3-8b-hf-logprob-B-priors.jsonl
+!runs/wikidata-qwen3-8b-hf-logprob-B.jsonl
+!runs/wikidata-qwen3-8b-hf-logprob-B.log
 
 # Statement sets fetched by examples/00-marks-tegmark/fetch_data.py (upstream has no licence file)
 examples/00-marks-tegmark/data/

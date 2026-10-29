@@ -1,0 +1,47 @@
+grading 29 entities with qwen3:8b-fp16 via ollama, template examples/03-two-clause-rivers/template.txt, n=8 T=0.7 + greedy
+[   1/29] Heidelberg               known             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=known(8/8 ok, 0 ref)
+[   2/29] Bad Münstereifel         mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=unstable(0/8 ok, 0 ref)
+[   3/29] Avignon                  known             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=known(8/8 ok, 0 ref)
+[   4/29] Kežmarok                 mixed             country=known(8/8 ok, 0 ref)  region=unstable(0/8 ok, 0 ref)  river=unstable(0/8 ok, 0 ref)
+[   5/29] Kraków                   known             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=known(8/8 ok, 0 ref)
+[   6/29] Wipperfürth              mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=unstable(0/8 ok, 0 ref)
+[   7/29] Verona                   known             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=known(8/8 ok, 0 ref)
+[   8/29] Tolmin                   mixed             country=known(8/8 ok, 0 ref)  region=unstable(0/8 ok, 0 ref)  river=unstable(2/8 ok, 0 ref)
+[   9/29] Koblenz                  known             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=known(8/8 ok, 0 ref)
+[  10/29] Altena                   mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=refused(0/8 ok, 8 ref)
+[  11/29] Coimbra                  mixed             country=known(8/8 ok, 0 ref)  region=unstable(2/8 ok, 0 ref)  river=unstable(4/8 ok, 0 ref)
+[  12/29] Mértola                  mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=unstable(5/8 ok, 0 ref)
+[  13/29] Düren                    mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=unstable(0/8 ok, 0 ref)
+[  14/29] Písek                    mixed             country=known(8/8 ok, 0 ref)  region=refused(0/8 ok, 8 ref)  river=confidently_wrong(0/8 ok, 0 ref)
+[  15/29] Uppsala                  mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=unstable(2/8 ok, 0 ref)
+[  16/29] Brantôme                 mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=confidently_wrong(0/8 ok, 0 ref)
+[  17/29] Wetzlar                  known             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=known(8/8 ok, 0 ref)
+[  18/29] Sandomierz               mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=unstable(0/8 ok, 0 ref)
+[  19/29] Wels                     mixed             country=unstable(4/8 ok, 0 ref)  region=known(7/8 ok, 0 ref)  river=confidently_wrong(0/8 ok, 0 ref)
+[  20/29] Idar-Oberstein           mixed             country=known(8/8 ok, 0 ref)  region=known(7/8 ok, 0 ref)  river=unstable(0/8 ok, 0 ref)
+[  21/29] Ronda                    mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=unstable(1/8 ok, 0 ref)
+[  22/29] Monschau                 mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=confidently_wrong(0/8 ok, 0 ref)
+[  23/29] Ptuj                     mixed             country=known(8/8 ok, 0 ref)  region=unstable(3/8 ok, 0 ref)  river=confidently_wrong(2/8 ok, 0 ref)
+[  24/29] Cochem                   mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=confidently_wrong(2/8 ok, 0 ref)
+[  25/29] Tábor                    mixed             country=known(8/8 ok, 0 ref)  region=known(6/8 ok, 0 ref)  river=confidently_wrong(0/8 ok, 0 ref)
+[  26/29] Tczew                    known             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=known(8/8 ok, 0 ref)
+[  27/29] Bernkastel-Kues          known             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=known(7/8 ok, 0 ref)
+[  28/29] Steyr                    mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=unstable(0/8 ok, 0 ref)
+[  29/29] Bad Kreuznach            mixed             country=known(8/8 ok, 0 ref)  region=known(8/8 ok, 0 ref)  river=confidently_wrong(0/8 ok, 0 ref)
+
+graded 29 entities, 87 (entity, question) pairs
+question bins (the slot unit):
+  country      known=28  confidently_wrong=0  unstable=1  refused=0
+  region       known=24  confidently_wrong=0  unstable=4  refused=1
+  river        known=8  confidently_wrong=8  unstable=12  refused=1
+  all          known=60  confidently_wrong=8  unstable=17  refused=2
+correct_rate bands (<= 1/8 | middle | >= 7/8): middle = half-known, keep for graded-confidence work
+  country      0 | 1 | 28
+  region       3 | 3 | 23
+  river        15 | 6 | 8
+entity bins:  known=8  confidently_wrong=0  unstable=0  refused=0  mixed=21
+worst-question report (21 mixed):
+  18 of 21 would be uniform without their single odd question
+    drop river       15 entities flip   (unstable->known x9, confidently_wrong->known x5, refused->known x1)
+    drop country      3 entities flip   (known->unstable x3)
+exit 0

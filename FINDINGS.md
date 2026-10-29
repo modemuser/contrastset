@@ -2,6 +2,9 @@
 
 Results that came out of building the tool, kept with the data that produced them.
 Each entry says what was measured, on what, and how far it can be trusted.
+The `runs/` files cited below are committed (graded files, pair files, probe outputs and
+the logs quoted); other run outputs are not. Scripts are in `scripts/`, inputs in
+`experiments/` and `examples/`.
 
 ## 2026-10-28 · An unknown neighbour costs a known clause nothing a known neighbour doesn't
 
